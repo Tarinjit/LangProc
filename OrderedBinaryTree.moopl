@@ -1,0 +1,31 @@
+proc main(int a, int b, int c) {
+  // TO BE COMPLETED
+}
+
+// Note: in Java this would be abstract but in Moopl all methods
+// must be implmented, even if they do nothing useful and will
+// never be called!
+class OrderedBinaryTree {
+
+  // TO BE COMPLETED
+
+}
+
+class EmptyTree extends OrderedBinaryTree {
+
+  /* constructor */
+  proc EmptyTree() {}
+
+  // TO BE COMPLETED
+}
+
+class NonEmptyTree extends OrderedBinaryTree {
+
+  /* constructor */
+  proc NonEmptyTree(OrderedBinaryTree left_, int x_, OrderedBinaryTree right_) {
+    // TO BE COMPLETED
+  }
+
+  // TO BE COMPLETED
+
+}
