@@ -66,7 +66,7 @@ class EmptyTree extends OrderedBinaryTree {
 
     @Override
     public OrderedBinaryTree insert(int x) {
-
+        
         return insert(x, root);
     }
 
