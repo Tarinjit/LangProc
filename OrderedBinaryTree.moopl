@@ -1,5 +1,10 @@
 proc main(int a, int b, int c) {
   // TO BE COMPLETED
+
+        for (int i = a - 1; i >= 0; --i) {
+            int j = ((b + 1) * (i / (b + 1))) % (c + 1);
+            t = t.insert(j);
+        }
 }
 
 // Note: in Java this would be abstract but in Moopl all methods
