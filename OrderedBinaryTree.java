@@ -66,6 +66,25 @@ class EmptyTree extends OrderedBinaryTree {
 
     @Override
     public OrderedBinaryTree insert(int x) {
+
+        return insert(x, root);
+    }
+
+    public EmptyTree insert(int x, EmptyTree curr) {
+        
+        if (curr == null) {
+            curr.data = x;
+        }else if (x < curr.data) {
+            curr.left = insert(x,curr.left);
+        }else if (x > curr.data) {
+            curr.right = insert(x,curr.right);
+        }
+        return curr;
+    }
+
+    /*
+    @Override
+    public OrderedBinaryTree insert(int x) {
         EmptyTree tree = new EmptyTree();
 
         tree.data = x;
@@ -77,13 +96,20 @@ class EmptyTree extends OrderedBinaryTree {
             EmptyTree current = root;
             EmptyTree parent = null;
 
+            while(true){
+            EmptyTree prev = new EmptyTree();
+
             while (true) {
                 parent = current;
 
+              if(current.data == x){
+                  continue;
+              }  
                 if (x < current.data) {
                     current = current.left;
                     if (current == null) {
                         parent.left = tree;
+                        
                         return this;
                     }
                 } else {
@@ -96,10 +122,11 @@ class EmptyTree extends OrderedBinaryTree {
                 }
 
             }
+            }
        }
        //return this;
     }
-
+     */
     @Override
     public int size() {
         return size(root);
