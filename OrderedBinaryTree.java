@@ -66,48 +66,53 @@ class EmptyTree extends OrderedBinaryTree {
 
     @Override
     public OrderedBinaryTree insert(int x) {
-        EmptyTree tree = new EmptyTree();
+        
+        
+        
+        
+        
+        
+        
+        /*        EmptyTree tree = new EmptyTree();
         EmptyTree prev = new EmptyTree();
         
-        
-
-        tree.data = x;
         prev.data = tree.data;
+        tree.data = x;
+        
         
         if (root == null) {
-            root = tree;
-            return this;
+        root = tree;
+        return this;
         } else {
-            EmptyTree current = root;
-            EmptyTree parent = null;
-            
-            if (x != prev.data){
-               
-            }   
-            while (true) {
-                parent = current;
-           
-                if (x < current.data) {
-                    current = current.left;
-                    if (current == null) {
-                        parent.left = tree;
-                        return this;
-                    }
-                } else {
-                    current = current.right;
-                    if (current == null) {
-                        parent.right = tree;
-                        return this;
-                    }
-                        
-                    
-                }
-
-            }
-       }
-       //return this;
+        EmptyTree current = root;
+        EmptyTree parent = null;
+        
+        while (x != prev.data) {
+        while (true) {
+        parent = current;
+        
+        if (x < current.data) {
+        current = current.left;
+        if (current == null) {
+        parent.left = tree;
+        return this;
+        }
+        } else {
+        current = current.right;
+        if (current == null) {
+        parent.right = tree;
+        return this;
+        }
+        
+        }
+        
+        }
+        }
+        }
+        
+        return this;*/
     }
-    
+
     @Override
     public int size() {
         return size(root);
