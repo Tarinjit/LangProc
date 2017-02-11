@@ -40,7 +40,7 @@ abstract class OrderedBinaryTree {
         //System.out.println(t.height());
 
         //System.out.println(t.size());
-        t.print();
+       // t.print();
 
     }
 
@@ -48,154 +48,113 @@ abstract class OrderedBinaryTree {
 
 /* Empty trees. */
 class EmptyTree extends OrderedBinaryTree {
-
-    public int data;
-    public EmptyTree left, right, root;
-
     public EmptyTree() {
-        data = 0;
-        left = null;
-        right = null;
-        root = null;
     }
 
     @Override
     public boolean isEmpty() {
-        return root == null;
+        return true;
     }
 
-    @Override
-    public OrderedBinaryTree insert(int x) {
+        @Override
+    public OrderedBinaryTree insert(int x) {        
+        EmptyTree left = new EmptyTree();
+        EmptyTree right = new EmptyTree();
         
-        return insert(x, root);
-    }
-
-    public EmptyTree insert(int x, EmptyTree curr) {
-        
-        if (curr == null) {
-            curr.data = x;
-        }else if (x < curr.data) {
-            curr.left = insert(x,curr.left);
-        }else if (x > curr.data) {
-            curr.right = insert(x,curr.right);
-        }
-        return curr;
-    }
-
-    /*
-    @Override
-    public OrderedBinaryTree insert(int x) {
-        EmptyTree tree = new EmptyTree();
-
-        tree.data = x;
-
-        if (root == null) {
-            root = tree;
-            return this;
-        } else {
-            EmptyTree current = root;
-            EmptyTree parent = null;
-
-            while(true){
-            EmptyTree prev = new EmptyTree();
-
-            while (true) {
-                parent = current;
-
-              if(current.data == x){
-                  continue;
-              }  
-                if (x < current.data) {
-                    current = current.left;
-                    if (current == null) {
-                        parent.left = tree;
-                        
-                        return this;
-                    }
-                } else {
-                    current = current.right;
-                    if (current == null) {
-                        parent.right = tree;
-                        return this;
-                    }
-
-                }
-
-            }
-            }
-       }
-       //return this;
-    }
-     */
+        NonEmptyTree tree = new NonEmptyTree(left, x, right);
+        tree.insert(x);
+        return tree;
+    }   
     @Override
     public int size() {
-        return size(root);
+        return 0;
     }
-
-    public int size(EmptyTree t) {
-        if (t == null) {
-            return 0;
-        }
-        return size(t.left) + 1 + size(t.right);
-    }
-
+    
     @Override
     public int height() {
-        return height(root);
-    }
-
-    public int height(EmptyTree t) {
-        if (t == null) {
-            return 0;
-        }
-        return 1 + Math.max(height(t.left), height(t.right));
+        return 0;
     }
 
     @Override
-    public void print() {
-        printTree(root);
-    }
-
-    public void printTree(EmptyTree t) {
-        if (t != null) {
-            printTree(t.left);
-            System.out.println(" " + t.data);
-            printTree(t.right);
-        }
+    public void print() {    
     }
 }
-
 /* Trees with an integer stored at the root and a left and right sub-tree. */
 class NonEmptyTree extends OrderedBinaryTree {
+     public int data;
+     public OrderedBinaryTree left, right;
 
     public NonEmptyTree(OrderedBinaryTree left, int x, OrderedBinaryTree right) {
-        // TO BE COMPLETED
+        this.left = left;
+        this.right = left;
+        this.data = x;
     }
 
     // TO BE COMPLETED
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        return false;
     }
 
     @Override
-    public OrderedBinaryTree insert(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public OrderedBinaryTree insert(int x) {        
+       NonEmptyTree root = new NonEmptyTree(left, data,right);
+       return insert(root,x);
     }
 
-    @Override
+   private OrderedBinaryTree insert(OrderedBinaryTree root, int x) {
+       if(root.isEmpty()){
+           data = x;
+           return root;
+       }
+       if(data < x){
+           left = insert(left,x);
+       }else if(data > x){
+           right = insert(right,x);
+       }
+       return root;
+   
+}
+
+   @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NonEmptyTree tree = new NonEmptyTree(left,data,right);
+        return size(tree);
+    }
+
+    public int size(OrderedBinaryTree l) {
+        if (l.isEmpty()) {
+            return 0;
+        }
+        return size(left) + 1 + size(right);
     }
 
     @Override
     public int height() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NonEmptyTree tree = new NonEmptyTree(left,data,right);
+        return height(tree);
+    }
+
+    public int height(OrderedBinaryTree l) {
+        if (l.isEmpty()) {
+            return 0;
+        }
+        return 1 + Math.max(height(left), height(right));
     }
 
     @Override
     public void print() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NonEmptyTree tree = new NonEmptyTree(left,data,right);
+        print(tree);
     }
 
+    public void print(OrderedBinaryTree l) {
+        if (l.isEmpty()) {
+            print(left);
+            System.out.println(data);
+            print(right);
+        }
+    }
 }
+
